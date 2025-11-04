@@ -79,10 +79,10 @@ export default function AdminLogin() {
           </Button>
         </form>
 
-        <p className="text-center text-sm text-muted mt-6">
+        <p className="text-center text-sm text-black mt-6">
           Demo credentials:
           <br />
-          <span className="font-mono bg-background px-2 py-1 rounded">admin / admin123</span>
+          <span className="font-mono bg-background px-2 py-1 rounded">admin@quizmaster.com / admin123</span>
         </p>
 
         <div className="mt-8 text-center">

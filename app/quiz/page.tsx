@@ -38,15 +38,15 @@ export default function QuizzesPage() {
       <QuizNav />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold mb-2">Available Quizzes</h1>
-        <p className="text-muted mb-8">Choose a quiz to get started</p>
+        <p className="text-black mb-8">Choose a quiz to get started</p>
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-muted">Loading quizzes...</p>
+            <p className="text-black">Loading quizzes...</p>
           </div>
         ) : quizzes.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted">No quizzes available yet</p>
+            <p className="text-black">No quizzes available yet</p>
           </div>
         ) : (
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -56,8 +56,8 @@ export default function QuizzesPage() {
                 className="bg-input border border-border rounded-lg p-6 hover:border-primary transition"
               >
                 <h3 className="text-lg font-semibold mb-2">{quiz.title}</h3>
-                <p className="text-sm text-muted mb-4">{quiz.description}</p>
-                <p className="text-xs text-muted mb-6">{quiz.questionCount} questions</p>
+                <p className="text-sm text-black mb-4">{quiz.description}</p>
+                <p className="text-xs text-black mb-6">{quiz.questionCount} questions</p>
 
                 <Link href={`/quiz/${quiz._id}`}>
                   <Button className="w-full bg-primary hover:bg-primary-dark text-white">Start Quiz</Button>

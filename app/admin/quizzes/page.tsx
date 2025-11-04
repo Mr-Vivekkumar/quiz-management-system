@@ -79,11 +79,11 @@ export default function AdminQuizzes() {
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-muted">Loading quizzes...</p>
+            <p className="text-black">Loading quizzes...</p>
           </div>
         ) : quizzes.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted mb-4">No quizzes created yet</p>
+            <p className="text-black mb-4">No quizzes created yet</p>
             <Link href="/admin/quizzes/create">
               <Button className="bg-accent hover:bg-accent/80">Create Your First Quiz</Button>
             </Link>
@@ -96,8 +96,8 @@ export default function AdminQuizzes() {
                 className="bg-input border border-border rounded-lg p-6 hover:border-primary transition"
               >
                 <h3 className="text-lg font-semibold mb-2">{quiz.title}</h3>
-                <p className="text-sm text-muted mb-4">{quiz.description}</p>
-                <div className="flex justify-between items-center text-xs text-muted mb-4">
+                <p className="text-sm text-black mb-4">{quiz.description}</p>
+                <div className="flex justify-between items-center text-xs text-black mb-4">
                   <span>{quiz.questionCount} questions</span>
                   <span
                     className={`px-2 py-1 rounded ${

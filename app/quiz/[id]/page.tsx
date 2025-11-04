@@ -128,7 +128,7 @@ function TakeQuizContent() {
       <>
         <QuizNav />
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-muted">Loading quiz...</p>
+          <p className="text-black">Loading quiz...</p>
         </div>
       </>
     )
@@ -152,7 +152,7 @@ function TakeQuizContent() {
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="bg-input border border-border rounded-lg p-8 space-y-6">
             <h1 className="text-3xl font-bold">{quiz.title}</h1>
-            <p className="text-muted">{quiz.description}</p>
+            <p className="text-black">{quiz.description}</p>
 
             <div className="bg-background p-4 rounded-lg border border-border">
               <p className="text-sm">
@@ -213,13 +213,13 @@ function TakeQuizContent() {
             <h1 className="text-3xl font-bold">Quiz Submitted!</h1>
 
             <div className="bg-background p-6 rounded-lg border border-border">
-              <p className="text-sm text-muted mb-2">Your Score</p>
+              <p className="text-sm text-black mb-2">Your Score</p>
               <p
                 className={`text-4xl font-bold ${percentageScore >= 80 ? "text-success" : percentageScore >= 60 ? "text-accent" : "text-error"}`}
               >
                 {percentageScore}%
               </p>
-              <p className="text-muted mt-2">
+              <p className="text-black mt-2">
                 {correctCount} out of {quiz.questions.length} correct
               </p>
             </div>
@@ -326,7 +326,7 @@ function TakeQuizContent() {
         <div className="mb-6">
           <div className="flex justify-between items-center mb-2">
             <h1 className="text-2xl font-bold">{quiz.title}</h1>
-            <span className="text-muted">
+            <span className="text-black">
               Question {currentQuestion + 1} of {quiz.questions.length}
             </span>
           </div>
@@ -375,7 +375,7 @@ export default function TakeQuizPage() {
       <>
         <QuizNav />
         <div className="min-h-screen flex items-center justify-center">
-          <p className="text-muted">Loading...</p>
+          <p className="text-black">Loading...</p>
         </div>
       </>
     }>

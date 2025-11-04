@@ -135,7 +135,7 @@ function EditQuizContent() {
       <>
         <AdminNav />
         <div className="flex items-center justify-center min-h-screen">
-          <p className="text-muted">Loading quiz...</p>
+          <p className="text-black">Loading quiz...</p>
         </div>
       </>
     )
@@ -175,7 +175,7 @@ function EditQuizContent() {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Questions</h2>
-              <Button onClick={addQuestion} className="bg-accent hover:bg-accent/80 text-white">
+              <Button onClick={addQuestion} className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded">
                 + Add Question
               </Button>
             </div>
@@ -270,7 +270,7 @@ export default function EditQuiz() {
       <>
         <AdminNav />
         <div className="flex items-center justify-center min-h-screen">
-          <p className="text-muted">Loading...</p>
+          <p className="text-black">Loading...</p>
         </div>
       </>
     }>

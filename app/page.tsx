@@ -8,7 +8,7 @@ export default function Home() {
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-primary-dark/10">
       <div className="text-center space-y-8 max-w-2xl mx-auto px-4">
         <h1 className="text-5xl font-bold text-accent">Quiz Master</h1>
-        <p className="text-xl text-muted">
+        <p className="text-xl text-black">
           Manage quizzes efficiently with a powerful admin dashboard or take quizzes as a user.
         </p>
 
@@ -32,15 +32,15 @@ export default function Home() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
           <div className="p-6 rounded-lg bg-input border border-border hover:border-primary transition">
             <h3 className="font-bold text-lg mb-2">Create Quizzes</h3>
-            <p className="text-sm text-muted">Build engaging quizzes with multiple choice questions</p>
+            <p className="text-sm text-black">Build engaging quizzes with multiple choice questions</p>
           </div>
           <div className="p-6 rounded-lg bg-input border border-border hover:border-primary transition">
             <h3 className="font-bold text-lg mb-2">Track Results</h3>
-            <p className="text-sm text-muted">Monitor user performance and detailed analytics</p>
+            <p className="text-sm text-black">Monitor user performance and detailed analytics</p>
           </div>
           <div className="p-6 rounded-lg bg-input border border-border hover:border-primary transition">
             <h3 className="font-bold text-lg mb-2">Easy Management</h3>
-            <p className="text-sm text-muted">Intuitive interface for publishing and editing quizzes</p>
+            <p className="text-sm text-black">Intuitive interface for publishing and editing quizzes</p>
           </div>
         </div>
       </div>

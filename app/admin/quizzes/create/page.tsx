@@ -172,7 +172,7 @@ export default function CreateQuiz() {
           <div className="space-y-6">
             <div className="flex justify-between items-center">
               <h2 className="text-2xl font-bold">Questions</h2>
-              <Button type="button" onClick={addQuestion} className="bg-accent hover:bg-accent/80 text-white">
+              <Button type="button" onClick={addQuestion} className="bg-primary hover:bg-primary-dark text-white font-bold py-2 px-4 rounded">
                 + Add Question
               </Button>
             </div>

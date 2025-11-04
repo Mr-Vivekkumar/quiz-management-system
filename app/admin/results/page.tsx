@@ -66,11 +66,11 @@ export default function AdminResults() {
 
         {loading ? (
           <div className="text-center py-12">
-            <p className="text-muted">Loading results...</p>
+            <p className="text-black">Loading results...</p>
           </div>
         ) : results.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-muted">No results yet</p>
+            <p className="text-black">No results yet</p>
           </div>
         ) : (
           <div className="overflow-x-auto">
@@ -90,14 +90,14 @@ export default function AdminResults() {
                   <tr key={result._id} className="border-b border-border hover:bg-input/50 transition">
                     <td className="py-4 px-4">{result.quizTitle}</td>
                     <td className="py-4 px-4">{result.userName}</td>
-                    <td className="py-4 px-4 text-muted">{result.userEmail}</td>
+                    <td className="py-4 px-4 text-black">{result.userEmail}</td>
                     <td className={`py-4 px-4 text-right font-semibold ${getScoreColor(result.percentageScore)}`}>
                       {result.score}/{result.totalQuestions}
                     </td>
                     <td className={`py-4 px-4 text-right font-semibold ${getScoreColor(result.percentageScore)}`}>
                       {result.percentageScore}%
                     </td>
-                    <td className="py-4 px-4 text-muted text-xs">{formatDate(result.completedAt)}</td>
+                    <td className="py-4 px-4 text-black text-xs">{formatDate(result.completedAt)}</td>
                   </tr>
                 ))}
               </tbody>
