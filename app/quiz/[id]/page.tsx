@@ -36,6 +36,7 @@ function TakeQuizContent() {
   const [userEmail, setUserEmail] = useState("")
   const [quizStarted, setQuizStarted] = useState(false)
   const [submitted, setSubmitted] = useState(false)
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
   useEffect(() => {
     fetchQuiz()
@@ -85,6 +86,8 @@ function TakeQuizContent() {
   const handleSubmit = async () => {
     if (!confirm("Are you sure you want to submit your quiz?")) return
 
+    setIsSubmitting(true)
+
     const userAnswers = quiz!.questions.map((q) => ({
       questionId: q.id,
       selectedAnswer: answers[q.id] || "",
@@ -115,6 +118,8 @@ function TakeQuizContent() {
     } catch (error) {
       console.error("Error submitting quiz:", error)
       alert("Error submitting quiz")
+    } finally {
+      setIsSubmitting(false)
     }
   }
 
@@ -350,8 +355,8 @@ function TakeQuizContent() {
           <div className="flex-1" />
 
           {currentQuestion === quiz.questions.length - 1 ? (
-            <Button onClick={handleSubmit} className="bg-success hover:bg-success/80 text-white">
-              Submit Quiz
+            <Button onClick={handleSubmit} className="bg-success hover:bg-success/80 text-white" disabled={isSubmitting}>
+              {isSubmitting ? "Submitting..." : "Submit Quiz"}
             </Button>
           ) : (
             <Button onClick={handleNext} className="bg-primary hover:bg-primary-dark text-white">
