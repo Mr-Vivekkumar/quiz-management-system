@@ -14,10 +14,16 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: "Username and password required" }, { status: 400 })
     }
 
-    const user = await User.findOne({ username }).select("+passwordHash")
+    const user = await User.findOne({ email: username }).select("+passwordHash")
 
-    if (!user || !verifyPassword(password, user.passwordHash)) {
-      return NextResponse.json({ error: "Invalid username or password" }, { status: 401 })
+    if (!user) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
+    }
+
+    const isPasswordValid = await verifyPassword(password, user.passwordHash)
+
+    if (!isPasswordValid) {
+      return NextResponse.json({ error: "Invalid credentials" }, { status: 401 })
     }
 
     if (!user.isActive) {
@@ -41,6 +47,7 @@ export async function POST(request: NextRequest) {
       { status: 200 },
     )
   } catch (error) {
+    console.error("Error logging in:", error)
     return NextResponse.json({ error: "Login failed" }, { status: 500 })
   }
 }

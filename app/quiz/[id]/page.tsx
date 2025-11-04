@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 interface Question {
   id: string
   question: string
+  questionType: "MCQ" | "True/False" | "Text"
   options: string[]
   correctAnswer: string
   explanation: string
@@ -230,6 +231,89 @@ export default function TakeQuizPage() {
   const question = quiz.questions[currentQuestion]
   const selectedAnswer = answers[question.id]
 
+  const renderQuestion = (question: Question) => {
+    const selectedAnswer = answers[question.id]
+
+    switch (question.questionType) {
+      case "MCQ":
+        return (
+          <div className="space-y-3">
+            {question.options.map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleSelectAnswer(option)}
+                className={`w-full text-left p-4 rounded-lg border-2 transition ${
+                  selectedAnswer === option
+                    ? "border-primary bg-primary/10"
+                    : "border-border hover:border-primary"
+                }`}
+              >
+                <div className="flex items-center">
+                  <div
+                    className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
+                      selectedAnswer === option
+                        ? "border-primary bg-primary"
+                        : "border-muted"
+                    }`}
+                  >
+                    {selectedAnswer === option && (
+                      <div className="w-2 h-2 bg-white rounded-full" />
+                    )}
+                  </div>
+                  <span>{option}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        )
+      case "True/False":
+        return (
+          <div className="space-y-3">
+            {["True", "False"].map((option, index) => (
+              <button
+                key={index}
+                onClick={() => handleSelectAnswer(option)}
+                className={`w-full text-left p-4 rounded-lg border-2 transition ${
+                  selectedAnswer === option
+                    ? "border-primary bg-primary/10"
+                    : "border-border hover:border-primary"
+                }`}
+              >
+                <div className="flex items-center">
+                  <div
+                    className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
+                      selectedAnswer === option
+                        ? "border-primary bg-primary"
+                        : "border-muted"
+                    }`}
+                  >
+                    {selectedAnswer === option && (
+                      <div className="w-2 h-2 bg-white rounded-full" />
+                    )}
+                  </div>
+                  <span>{option}</span>
+                </div>
+              </button>
+            ))}
+          </div>
+        )
+      case "Text":
+        return (
+          <div>
+            <input
+              type="text"
+              value={selectedAnswer || ""}
+              onChange={(e) => handleSelectAnswer(e.target.value)}
+              placeholder="Enter your answer"
+              className="w-full px-4 py-2 rounded-lg border border-border bg-background focus:outline-none focus:ring-2 focus:ring-primary"
+            />
+          </div>
+        )
+      default:
+        return null
+    }
+  }
+
   return (
     <>
       <QuizNav />
@@ -255,28 +339,7 @@ export default function TakeQuizPage() {
         <div className="bg-input border border-border rounded-lg p-8 space-y-6">
           <h2 className="text-xl font-semibold">{question.question}</h2>
 
-          <div className="space-y-3">
-            {question.options.map((option, index) => (
-              <button
-                key={index}
-                onClick={() => handleSelectAnswer(option)}
-                className={`w-full text-left p-4 rounded-lg border-2 transition ${
-                  selectedAnswer === option ? "border-primary bg-primary/10" : "border-border hover:border-primary"
-                }`}
-              >
-                <div className="flex items-center">
-                  <div
-                    className={`w-5 h-5 rounded-full border-2 mr-3 flex items-center justify-center ${
-                      selectedAnswer === option ? "border-primary bg-primary" : "border-muted"
-                    }`}
-                  >
-                    {selectedAnswer === option && <div className="w-2 h-2 bg-white rounded-full" />}
-                  </div>
-                  <span>{option}</span>
-                </div>
-              </button>
-            ))}
-          </div>
+          {renderQuestion(question)}
         </div>
 
         <div className="flex gap-4 mt-8">

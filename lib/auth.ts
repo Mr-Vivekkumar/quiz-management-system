@@ -1,14 +1,17 @@
+import bcrypt from "bcrypt"
 import crypto from "crypto"
 
-// Simple password hashing (in production, use bcrypt)
-export function hashPassword(password: string): string {
-  return crypto.createHash("sha256").update(password).digest("hex")
+export async function hashPassword(password: string): Promise<string> {
+  const saltRounds = 10
+  return await bcrypt.hash(password, saltRounds)
 }
 
-export function verifyPassword(password: string, hash: string): boolean {
-  return hashPassword(password) === hash
+export async function verifyPassword(password: string, hashedPassword: string): Promise<boolean> {
+  return await bcrypt.compare(password, hashedPassword)
 }
 
 export function generateToken(): string {
-  return crypto.randomBytes(32).toString("hex")
+  const bytes = new Uint8Array(32)
+  crypto.getRandomValues(bytes)
+  return Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("")
 }
