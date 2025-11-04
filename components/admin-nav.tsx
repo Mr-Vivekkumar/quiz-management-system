@@ -3,8 +3,9 @@
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { Button } from "@/components/ui/button"
+import { Suspense } from "react"
 
-export function AdminNav() {
+function AdminNavContent() {
   const pathname = usePathname()
 
   const isActive = (path: string) => pathname === path
@@ -48,5 +49,26 @@ export function AdminNav() {
         </div>
       </div>
     </nav>
+  )
+}
+
+export function AdminNav() {
+  return (
+    <Suspense fallback={
+      <nav className="bg-input border-b border-border sticky top-0 z-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+          <div className="flex justify-between items-center">
+            <div className="text-2xl font-bold text-accent">Quiz Admin</div>
+            <div className="flex gap-4">
+              <div className="w-20 h-8 bg-border rounded animate-pulse"></div>
+              <div className="w-20 h-8 bg-border rounded animate-pulse"></div>
+              <div className="w-16 h-8 bg-border rounded animate-pulse"></div>
+            </div>
+          </div>
+        </div>
+      </nav>
+    }>
+      <AdminNavContent />
+    </Suspense>
   )
 }

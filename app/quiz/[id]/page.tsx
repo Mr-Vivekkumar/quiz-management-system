@@ -2,7 +2,7 @@
 
 import Link from "next/link"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { QuizNav } from "@/components/quiz-nav"
 import { Button } from "@/components/ui/button"
@@ -23,7 +23,7 @@ interface QuizData {
   questions: Question[]
 }
 
-export default function TakeQuizPage() {
+function TakeQuizContent() {
   const params = useParams()
   const router = useRouter()
   const quizId = params.id as string
@@ -361,5 +361,20 @@ export default function TakeQuizPage() {
         </div>
       </div>
     </>
+  )
+}
+
+export default function TakeQuizPage() {
+  return (
+    <Suspense fallback={
+      <>
+        <QuizNav />
+        <div className="min-h-screen flex items-center justify-center">
+          <p className="text-muted">Loading...</p>
+        </div>
+      </>
+    }>
+      <TakeQuizContent />
+    </Suspense>
   )
 }

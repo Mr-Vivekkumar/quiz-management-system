@@ -5,8 +5,9 @@ import { type NextRequest, NextResponse } from "next/server"
 export async function GET(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     await connectDB()
+    const { id } = await params
 
-    const quiz = await Quiz.findById(params.id)
+    const quiz = await Quiz.findById(id)
 
     if (!quiz) {
       return NextResponse.json({ error: "Quiz not found" }, { status: 404 })
@@ -21,12 +22,13 @@ export async function GET(request: NextRequest, { params }: { params: { id: stri
 export async function PATCH(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     await connectDB()
+    const { id } = await params
 
     const body = await request.json()
     const { title, description, questions } = body
 
     const quiz = await Quiz.findByIdAndUpdate(
-      params.id,
+      id,
       { title, description, questions, updatedAt: new Date() },
       { new: true },
     )
@@ -40,8 +42,9 @@ export async function PATCH(request: NextRequest, { params }: { params: { id: st
 export async function DELETE(request: NextRequest, { params }: { params: { id: string } }) {
   try {
     await connectDB()
+    const { id } = await params
 
-    await Quiz.findByIdAndDelete(params.id)
+    await Quiz.findByIdAndDelete(id)
 
     return NextResponse.json({ message: "Quiz deleted successfully" })
   } catch (error) {

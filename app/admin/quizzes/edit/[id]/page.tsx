@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useEffect, useState, Suspense } from "react"
 import { useParams, useRouter } from "next/navigation"
 import { AdminNav } from "@/components/admin-nav"
 import { Button } from "@/components/ui/button"
@@ -21,7 +21,7 @@ interface QuizData {
   isPublished: boolean
 }
 
-export default function EditQuiz() {
+function EditQuizContent() {
   const params = useParams()
   const router = useRouter()
   const quizId = params.id as string
@@ -261,5 +261,20 @@ export default function EditQuiz() {
         </div>
       </div>
     </>
+  )
+}
+
+export default function EditQuiz() {
+  return (
+    <Suspense fallback={
+      <>
+        <AdminNav />
+        <div className="flex items-center justify-center min-h-screen">
+          <p className="text-muted">Loading...</p>
+        </div>
+      </>
+    }>
+      <EditQuizContent />
+    </Suspense>
   )
 }
