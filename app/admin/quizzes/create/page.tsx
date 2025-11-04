@@ -20,7 +20,16 @@ export default function CreateQuiz() {
   const router = useRouter()
   const [title, setTitle] = useState("")
   const [description, setDescription] = useState("")
-  const [questions, setQuestions] = useState<Question[]>([])
+  const [questions, setQuestions] = useState<Question[]>([
+    {
+      id: "default-question-1",
+      question: "",
+      questionType: "MCQ",
+      options: ["", "", "", ""],
+      correctAnswer: "",
+      explanation: "",
+    },
+  ])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
